@@ -11,6 +11,10 @@ window.device = device
 // The <html> element.
 const documentElement = window.document.documentElement
 
+// The current device information from data-current-device attribute
+documentElement.dataset.currentDevice = '';
+const getCurrentDeviceInformation = () => documentElement.dataset.currentDevice
+
 // The client user agent string.
 // Lowercase, so we can use the more efficient indexOf(), instead of Regex
 const userAgent = window.navigator.userAgent.toLowerCase()
@@ -210,25 +214,24 @@ function find(needle) {
   return includes(userAgent, needle)
 }
 
-// Check if documentElement already has a given class.
-function hasClass(className) {
-  return documentElement.className.match(new RegExp(className, 'i'))
+// Check if documentElement already has a given device information.
+function hasDeviceInformation(deviceProperty) {
+  return getCurrentDeviceInformation().match(new RegExp(deviceProperty, 'i'))
 }
 
-// Add one or more CSS classes to the <html> element.
-function addClass(className) {
-  let currentClassNames = null
-  if (!hasClass(className)) {
-    currentClassNames = documentElement.className.replace(/^\s+|\s+$/g, '')
-    documentElement.className = `${currentClassNames} ${className}`
+// Add one or more device property data-current-device attribute of the <html> element.
+function addDeviceInformation(deviceProperty) {
+  if (!hasDeviceInformation(deviceProperty)) {
+    const currentDeviceInformation = getCurrentDeviceInformation().replace(/^\s+|\s+$/g, '')
+    documentElement.dataset.currentDevice = `${currentDeviceInformation} ${deviceProperty}`
   }
 }
 
-// Remove single CSS class from the <html> element.
-function removeClass(className) {
-  if (hasClass(className)) {
-    documentElement.className = documentElement.className.replace(
-      ` ${className}`,
+// Remove single device property from the  data-current-device attribute of the <html> element.
+function removeDeviceInformation(deviceProperty) {
+  if (hasDeviceInformation(deviceProperty)) {
+    documentElement.dataset.currentDevice = getCurrentDeviceInformation().replace(
+      ` ${deviceProperty}`,
       ''
     )
   }
@@ -241,52 +244,52 @@ function removeClass(className) {
 
 if (device.ios()) {
   if (device.ipad()) {
-    addClass('ios ipad tablet')
+    addDeviceInformation('ios ipad tablet')
   } else if (device.iphone()) {
-    addClass('ios iphone mobile')
+    addDeviceInformation('ios iphone mobile')
   } else if (device.ipod()) {
-    addClass('ios ipod mobile')
+    addDeviceInformation('ios ipod mobile')
   }
 } else if (device.macos()) {
-  addClass('macos desktop')
+  addDeviceInformation('macos desktop')
 } else if (device.android()) {
   if (device.androidTablet()) {
-    addClass('android tablet')
+    addDeviceInformation('android tablet')
   } else {
-    addClass('android mobile')
+    addDeviceInformation('android mobile')
   }
 } else if (device.blackberry()) {
   if (device.blackberryTablet()) {
-    addClass('blackberry tablet')
+    addDeviceInformation('blackberry tablet')
   } else {
-    addClass('blackberry mobile')
+    addDeviceInformation('blackberry mobile')
   }
 } else if (device.windows()) {
   if (device.windowsTablet()) {
-    addClass('windows tablet')
+    addDeviceInformation('windows tablet')
   } else if (device.windowsPhone()) {
-    addClass('windows mobile')
+    addDeviceInformation('windows mobile')
   } else {
-    addClass('windows desktop')
+    addDeviceInformation('windows desktop')
   }
 } else if (device.fxos()) {
   if (device.fxosTablet()) {
-    addClass('fxos tablet')
+    addDeviceInformation('fxos tablet')
   } else {
-    addClass('fxos mobile')
+    addDeviceInformation('fxos mobile')
   }
 } else if (device.meego()) {
-  addClass('meego mobile')
+  addDeviceInformation('meego mobile')
 } else if (device.nodeWebkit()) {
-  addClass('node-webkit')
+  addDeviceInformation('node-webkit')
 } else if (device.television()) {
-  addClass('television')
+  addDeviceInformation('television')
 } else if (device.desktop()) {
-  addClass('desktop')
+  addDeviceInformation('desktop')
 }
 
 if (device.cordova()) {
-  addClass('cordova')
+  addDeviceInformation('cordova')
 }
 
 // Orientation Handling
@@ -295,12 +298,12 @@ if (device.cordova()) {
 // Handle device orientation changes.
 function handleOrientation() {
   if (device.landscape()) {
-    removeClass('portrait')
-    addClass('landscape')
+    removeDeviceInformation('portrait')
+    addDeviceInformation('landscape')
     walkOnChangeOrientationList('landscape')
   } else {
-    removeClass('landscape')
-    addClass('portrait')
+    removeDeviceInformation('landscape')
+    addDeviceInformation('portrait')
     walkOnChangeOrientationList('portrait')
   }
   setOrientationCache()
