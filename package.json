@@ -1,7 +1,7 @@
 {
-  "name": "current-device",
+  "name": "current-device-information",
   "version": "0.10.2",
-  "homepage": "https://github.com/matthewhudson/current-device",
+  "homepage": "https://github.com/Skripatch/current-device-information",
   "description": "The easiest way to write conditional CSS and/or JavaScript based on device operating system (iOS, Android, Blackberry, Windows, Firefox OS, MeeGo, AppleTV, etc), orientation (Portrait vs. Landscape), and type (Tablet vs. Mobile).",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,16 +21,16 @@
     "prettier": "2.3.2"
   },
   "author": {
-    "name": "Matthew Hudson",
-    "email": "matthud@gmail.com",
-    "url": "https://hudson.dev"
+    "name": "Yuri Friedberg",
+    "email": "yurifriedberg@gmail.com",
+    "url": ""
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/matthewhudson/current-device.git"
+    "url": "git://github.com/Skripatch/current-device-information.git"
   },
   "bugs": {
-    "url": "https://github.com/matthewhudson/current-device/issues"
+    "url": "https://github.com/Skripatch/current-device-information/issues"
   },
   "license": "MIT",
   "types": "lib/types/index.d.ts"
