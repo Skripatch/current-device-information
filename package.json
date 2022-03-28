@@ -1,6 +1,6 @@
 {
   "name": "current-device-information",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "homepage": "https://github.com/Skripatch/current-device-information",
   "description": "The easiest way to write conditional CSS and/or JavaScript based on device operating system (iOS, Android, Blackberry, Windows, Firefox OS, MeeGo, AppleTV, etc), orientation (Portrait vs. Landscape), and type (Tablet vs. Mobile).",
   "main": "lib/index.js",
@@ -28,6 +28,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/Skripatch/current-device-information.git"
+  },
+  "publishConfig": {
+    "username": "Skripatch"
   },
   "bugs": {
     "url": "https://github.com/Skripatch/current-device-information/issues"
