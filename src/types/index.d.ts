@@ -1,4 +1,4 @@
-declare module 'current-device' {
+declare module 'current-device-information' {
   export interface CurrentDeviceInterface {
     mobile: () => boolean;
     tablet: () => boolean;
